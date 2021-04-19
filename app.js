@@ -1,7 +1,6 @@
 const config = require('./utils/config')
 const express = require('express')
 require('express-async-errors')
-const bodyParser = require('body-parser')
 const app = express()
 const cors = require('cors')
 const jobsRouter = require('./controllers/jobs')
@@ -23,7 +22,7 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology
 
 app.use(cors())
 app.use(express.static('build'))
-app.use(bodyParser.json())
+app.use(express.json())
 app.use(middleware.requestLogger)
 
 app.use('/api/users', usersRouter)
